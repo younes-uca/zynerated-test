@@ -1,0 +1,54 @@
+package ma.zs.collaborator.service.impl.admin.catalog;
+
+
+import ma.zs.collaborator.bean.core.catalog.Product;
+import ma.zs.collaborator.dao.criteria.core.catalog.ProductCriteria;
+import ma.zs.collaborator.dao.facade.core.catalog.ProductDao;
+import ma.zs.collaborator.dao.specification.core.catalog.ProductSpecification;
+import ma.zs.collaborator.service.facade.admin.catalog.ProductAdminService;
+import ma.zs.collaborator.zynerator.service.AbstractServiceImpl;
+import ma.zs.collaborator.zynerator.util.ListUtil;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.ArrayList;
+
+
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+
+import java.util.List;
+@Service
+public class ProductAdminServiceImpl extends AbstractServiceImpl<Product, ProductCriteria, ProductDao> implements ProductAdminService {
+
+
+
+
+
+
+    public Product findByReferenceEntity(Product t){
+        return  dao.findByCode(t.getCode());
+    }
+
+
+    public List<Product> findAllOptimized() {
+        return dao.findAllOptimized();
+    }
+
+
+
+
+
+    public void configure() {
+        super.configure(Product.class, ProductSpecification.class);
+    }
+
+
+
+    public ProductAdminServiceImpl(ProductDao dao) {
+        super(dao);
+    }
+
+}
